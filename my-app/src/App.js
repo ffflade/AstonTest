@@ -8,37 +8,6 @@ import SignUp from './components/signUp/SignUp';
 
 function App() {
 
-	// const [userLogged, setUserLogged] = useState(0);
-	// const [user, setUser] = useState('');
-
-	// const userLogOut = () => {
-	// 	setUserLogged(0);
-	// }
-
-	// const userLogIn = () => {
-	// 	setUserLogged(1);
-	// }
-
-	// const loginAccount = (name) => {
-	// 	setUser(name);
-	// }
-
-	// <Header 
-	// userLogged={userLogged} 
-	// userLogOut={userLogOut}
-	// user={user}/>
-
-	// <Route 
-	// path="/login" 
-	// element={<Login 
-	// 	userLogIn={userLogIn}
-	// 	loginAccount={loginAccount} />} />
-
-	// <Route 
-	// path="/signup" 
-	// element={<SignUp 
-	// 	userLogIn={userLogIn}
-	// 	loginAccount={loginAccount} />} />
 	return (
 		<Router>
 			<div className="app">
