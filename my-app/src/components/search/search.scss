@@ -1,0 +1,17 @@
+@import '../../style/variables.scss';
+
+.search {
+	margin: 50px 0px 50px -620px;
+
+	&__input {
+		background-color: $dark;
+		height: 50px;
+		width: 400px;
+		padding: 0px 15px;
+		border-radius: 15px;
+		font-size: 16px;
+		&::placeholder {
+			color: #fff;
+		}
+	}
+}

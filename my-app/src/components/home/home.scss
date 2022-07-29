@@ -1,0 +1,16 @@
+.char__content {
+	display: flex;
+	border-radius: 15px;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 15px;
+	background: linear-gradient(177.9deg, rgb(141, 82, 80) 3.6%, rgb(119, 127, 148) 105.8%);
+	// radial-gradient(circle at 10% 20%, rgb(248, 219, 219) 0%, rgb(229, 248, 250) 90%);
+	&:first-child {
+		display: block;
+		
+	}
+	&:nth-child(2) {
+		box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+	}
+}
