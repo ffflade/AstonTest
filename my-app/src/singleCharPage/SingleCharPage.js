@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 
-import useMarvelService from '../services/MarverService';
+import useMarvelService from '../services/useMarverService';
 
 import './singleCharPage.scss'
 
@@ -24,13 +24,12 @@ const SingleCharPage = (props) => {
 
 	const updateChar = () => {
 		getCharacter(itemId)
-			.then(onCharLoaded)
+		.then((char) => {
+			setChar(char)
+		})
 	}
-	const onCharLoaded = (char) => {
-		setChar(char);
-	}
-	const content = !(!char) ? <View char={char}/> : null;
 
+	const content = !(!char) ? <View char={char}/> : null;
 
 	return (
 		<div className="char__info">
@@ -77,8 +76,6 @@ const View = ({char}) => {
 					{comics.length > 0 ? null : 'There is no comics'}
 					{
 						comics.map((item, i) => {
-								// eslint-disable-next-line
-							if (i > 9) return;
 							return (
 								<li key={i}className="char__comics-item">
 								{item.name}

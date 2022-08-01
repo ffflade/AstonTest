@@ -5,9 +5,9 @@ import Home from "./components/home/Home";
 import SingleCharPage from './singleCharPage/SingleCharPage';
 import Login from './components/login/Login';
 import SignUp from './components/signUp/SignUp';
+import SearchPage from './components/searchPage/SearchPage';
 
 function App() {
-
 	return (
 		<Router>
 			<div className="app">
@@ -28,6 +28,10 @@ function App() {
 					<Route 
 						path='/character/:itemId'
 						element={<SingleCharPage/>}/>
+
+					<Route 
+						path='/search/:name'
+						element={<SearchPage/>}/>
 				</Routes>
 			</div>
 		</Router>

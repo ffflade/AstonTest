@@ -1,12 +1,7 @@
 const userMiddleware = (store) => (next) => (action) => {
-	console.log('here')
-	let userData = JSON.parse(localStorage.getItem(`${action.payload.username}`));
-	
-	let {username : user, password} = userData;
-	console.log(user, password)
 
 	if (action.type === 'user/userSignUp') {
-		if (user) {
+		if (JSON.parse(localStorage.getItem(`${action.payload.username}`))) {
 			console.log('existing')
 			return null;
 		} else {
@@ -17,6 +12,8 @@ const userMiddleware = (store) => (next) => (action) => {
 			}))
 		}
 	}
+
+	let {username : user, password} = JSON.parse(localStorage.getItem(`${action.payload.username}`));
 
 	if (action.type === 'user/userLogIn') {
 		if (user) {
@@ -33,7 +30,7 @@ const userMiddleware = (store) => (next) => (action) => {
 		}
 	}
 
-	return (next(action));
+	return next(action);
 }
 
 export default userMiddleware;
