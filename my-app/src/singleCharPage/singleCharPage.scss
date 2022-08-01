@@ -1,0 +1,75 @@
+@import '../style/variables.scss';
+
+.char {
+	&__container{
+		display: flex;
+		justify-content: space-between;
+		gap: 20px;
+	}
+	&__fisrt, &__second {
+		width: 50%;
+	}
+
+	&__back{
+		display: inline-block;
+		padding: 4px;
+		padding-left: 40px;
+		background: url(../images/arrow-left.png) no-repeat;
+		background-size: 30px;
+		font-size: 20px;
+		font-weight: 700;
+		cursor: pointer;
+	}
+	&__info {
+		margin-top: 25px;
+		padding: 25px;
+		box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+		&-name {
+			font-weight: bold;
+			font-size: 22px;
+			line-height: 29px;
+			text-transform: uppercase;
+		}
+	}
+	&__basics {
+		display: flex;
+		gap: 30px;
+
+		img {
+			width: 200px;
+			height: 200px;
+			object-fit: cover;
+		}
+	}
+	&__btns {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		margin-top: 35px;
+	}
+	&__descr {
+		max-width: 60%;
+		margin-top: 15px;
+		font-size: 23px;
+		line-height: 25px;
+	}
+	&__comics {
+		font-weight: bold;
+		font-size: 20px;
+		line-height: 24px;
+		&-item {
+			width: 500px;
+			padding: 0px 10px;
+			line-height: 25px;
+			box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+			margin-top: 10px;
+		}
+	}
+	&__select {
+		font-weight: bold;
+		font-size: 18px;
+		line-height: 24px;
+		text-align: center;
+	}
+
+}
