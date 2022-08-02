@@ -1,23 +1,32 @@
+import { isLogged } from "./userSlice";
+
 const userMiddleware = (store) => (next) => (action) => {
 
-	if (action.type === 'user/userSignUp') {
-		if (JSON.parse(localStorage.getItem(`${action.payload.username}`))) {
+	let currentStore = store.getState();
+
+
+	let currentUser =  JSON.parse(localStorage.getItem(`${currentStore.user.username}`));
+
+	let payloadUser = JSON.parse(localStorage.getItem(`${action.payload.username}`));
+
+	if (action.type === 'user/usersignIn') {
+
+		if (payloadUser) {
 			console.log('existing')
 			return null;
 		} else {
-
 			localStorage.setItem(action.payload.username, JSON.stringify({
 				username: action.payload.username,
 				password: action.payload.password,
-			}))
+				history: {}
+			}));
 		}
 	}
 
-	let {username : user, password} = JSON.parse(localStorage.getItem(`${action.payload.username}`));
+	else if (action.type === 'user/userLogIn') {
 
-	if (action.type === 'user/userLogIn') {
-		if (user) {
-			if (password === action.payload.password) {
+		if (payloadUser) {
+			if (payloadUser.password === action.payload.password) {
 				return (next(action));
 			} else {
 				console.log('wrong pass');
@@ -29,6 +38,20 @@ const userMiddleware = (store) => (next) => (action) => {
 			return null;
 		}
 	}
+
+	else if (action.type === 'user/addHistory') {
+		currentUser[`history`][action.payload] = true;
+	}
+
+	if (isLogged) {
+		localStorage.setItem(currentUser.username, JSON.stringify({
+			username: currentUser.username,
+			password: currentUser.password,
+			history: currentUser.history
+		}))
+	}
+
+
 
 	return next(action);
 }

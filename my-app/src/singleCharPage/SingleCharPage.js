@@ -91,7 +91,11 @@ const View = ({char}) => {
 }
 
 SingleCharPage.propTypes = {
-	itemId: PropTypes.string
+	itemId: PropTypes.string,
+}
+
+View.propTypes = {
+	char: PropTypes.object
 }
 
 export default SingleCharPage;

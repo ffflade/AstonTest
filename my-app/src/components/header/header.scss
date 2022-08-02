@@ -12,6 +12,9 @@
 			font-weight: bold;
 			font-size: 24px;
 			line-height: 32px;
+			&:hover {
+				color: red;
+			}
 		}
 	}
 	&__menu {
@@ -24,7 +27,7 @@
 			li {
 				margin: 0 8px;
 				a:hover {
-					color: $main-color;
+					color: red;
 				}
 			}
 		}

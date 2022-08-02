@@ -25,22 +25,16 @@ const SearchPage = () => {
 		setCharList(charList => [...charList, ...newCharList]);
 	}
 	const items = View(charList);
-	console.log(charList);
 
 	return (
-	
-		charList.length > 0 ?
 			<div className="char__content">
 				<div className='back' onClick={goBack}>Back</div>
-				<div className="char__list">
-					{items}
-				</div>
-			</div>
-		: 
-			<div className="char__content">
-				<div className='back' onClick={goBack}>Back</div>
-				<div className="char__list">
+				<div className="char__list"> 
+				{
+					charList.length > 0 ?
+					{...items} :
 					<h1 className="char__notfound">No matches found</h1>
+				}
 				</div>
 			</div>
 	)

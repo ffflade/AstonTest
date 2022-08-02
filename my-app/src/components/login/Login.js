@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { userLogIn } from "../../features/user/userSlice";
@@ -12,11 +12,13 @@ const Login = () => {
 		username: '',
 		password: ''
 	});
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
 	const onSubmitHandler = (e) => {
 		e.preventDefault();
 		dispatch(userLogIn(data));
+		navigate('/')
 	}
 
 	return (
@@ -45,9 +47,9 @@ const Login = () => {
 				</form>
 
 				<p>or</p>
-				
+
 				<div className="login__alternative">
-					<Link to="/signup" className="login__link_one">Sign Up</Link>
+					<Link to="/signIn" className="login__link_one">Sign Up</Link>
 					/
 					<Link to="/" className="login__link_two">Home</Link>
 				</div>
