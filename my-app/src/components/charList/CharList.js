@@ -1,13 +1,11 @@
 import {useState, useEffect, useRef} from 'react';
 import { Link } from 'react-router-dom'
 
-import PropTypes from 'prop-types';
-
-import useMarvelService from '../../services/MarverService';
+import useMarvelService from '../../services/useMarverService';
 
 import './charList.scss';
 
-const CharList = (props) => {
+const CharList = () => {
 
 	const [charList, setCharList] = useState([]);
 	const [newItemLoading, setNewItemLoading] = useState(false);
@@ -43,7 +41,7 @@ const CharList = (props) => {
 	}
 
 	const itemRefs = useRef([]);
-	const items = View(charList, itemRefs, props);
+	const items = View(charList, itemRefs);
 
 	return (
 		<div className="char__list">
@@ -60,12 +58,7 @@ const CharList = (props) => {
 	)
 }
 
-const View = (arr, itemRefs, props) => {
-	const focusOnItem = (id) => {
-		itemRefs.current.forEach(item => item.classList.remove('char__item_selected'));
-		itemRefs.current[id].classList.add('char__item_selected');
-		itemRefs.current[id].focus();
-	}
+const View = (arr, itemRefs) => {
 
 	const items =  arr.map((item, i) => {
 		let imgStyle = {'objectFit' : 'cover'};
@@ -84,16 +77,7 @@ const View = (arr, itemRefs, props) => {
 				tabIndex={0}
 				ref={el => itemRefs.current[i] = el}
 				key={i}
-				onClick={() => {
-						props.onCharSelected(item.id)
-						focusOnItem(i)
-					}}
-				onKeyPress={(e) => {
-					if (e.key === ' ' || e.key === 'Enter') {
-						props.onCharSelected(item.id);
-						focusOnItem(i);
-					}
-				}}>
+				>
 				
 
 				<img src={item.thumbnail} alt={item.name} style={imgStyle}/>
@@ -113,10 +97,6 @@ const View = (arr, itemRefs, props) => {
 		</>
 
 	)
-}
-
-CharList.propTypes = {
-	onCharSelected: PropTypes.func.isRequired
 }
 
 export default CharList;

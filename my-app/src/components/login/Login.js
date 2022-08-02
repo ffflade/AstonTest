@@ -15,7 +15,6 @@ const Login = () => {
 	const dispatch = useDispatch();
 
 	const onSubmitHandler = (e) => {
-		
 		e.preventDefault();
 		dispatch(userLogIn(data));
 	}
@@ -44,7 +43,9 @@ const Login = () => {
 						onChange={(e) => setData({ ...data, password: e.target.value })}/>
 					<button type="submit" className="login__button">Login</button>
 				</form>
+
 				<p>or</p>
+				
 				<div className="login__alternative">
 					<Link to="/signup" className="login__link_one">Sign Up</Link>
 					/
