@@ -7,7 +7,8 @@ const initialState = {
 	history: {},
 	existing: false,
 	wrongPassword: false,
-	error: false
+	error: false,
+	favourite: {}
 }
 
 const userSlice = createSlice({
@@ -38,13 +39,19 @@ const userSlice = createSlice({
 		},
 		userNotRegistered(state) {
 			state.error = true;
+		},
+		addFavourite(state, action) {
+			state.favourite[action.payload] = true;
+		},
+		removeFavourite(state, action) {
+			delete state.favourite[action.payload];
 		}
 	}
 });
 
 const { actions } = userSlice;
 
-export const { usersignIn, userLogIn, userLogOut, addHistory } = actions;
+export const { usersignIn, userLogIn, userLogOut, addHistory, addFavourite, removeFavourite } = actions;
 
 export const isLogged = state => state.user.isRegged;
 export const getUser = state => state.user.username;

@@ -1,16 +1,19 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 
 import useMarvelService from '../services/useMarverService';
-
+import { addFavourite, removeFavourite, isLogged } from '../features/user/userSlice';
 import './singleCharPage.scss'
 
 const SingleCharPage = (props) => {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 	const { itemId } = useParams();
+	const logged = useSelector(isLogged);
 
 	const goBack = () => navigate(-1);
 
@@ -29,11 +32,32 @@ const SingleCharPage = (props) => {
 		})
 	}
 
+	const handleClick = () => {
+		dispatch(addFavourite(`${itemId}`));
+	}
+	const handleClick_remover = () => {
+		dispatch(removeFavourite(`${itemId}`));
+	}
+
 	const content = !!char ? <View char={char}/> : null;
 
 	return (
 		<div className="char__info">
 			<div className='char__back' onClick={goBack}>Back</div>
+			{
+				logged ?
+				<>
+					<button
+						className='char__favourite'
+						onClick={handleClick}
+					>add to favourite</button>
+					<button
+						className='char__favourite char__favourite_remove'
+						onClick={handleClick_remover}
+					>remove favourite</button>
+				</> :
+				null
+			}
 			{content}
 		</div>
 	)

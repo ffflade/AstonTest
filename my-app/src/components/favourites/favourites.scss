@@ -1,0 +1,105 @@
+@import '../../style/variables.scss';
+
+.char {
+	&__content {
+		display: flex;
+		border-radius: 15px;
+		flex-direction: column;
+		align-items: center;
+		padding: 20px;
+		background: linear-gradient(177.9deg, rgb(141, 82, 80) 3.6%, rgb(119, 127, 148) 105.8%);
+		&:first-child {
+			display: block;
+			
+		}
+		&:nth-child(2) {
+			box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+		}
+	}
+	&__list {
+		margin-top: 35px;
+	}
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(4, 250px);
+		column-gap: 25px;
+		row-gap: 50px;
+		margin-left: 50px;
+		
+	}
+	&__item {
+		width: 200px;
+		height: 300px;
+		background-color: $dark;
+		box-shadow: 5px 5px 10px rgba(0, 0, 0, .25);
+		padding: 15px;
+		cursor: pointer;
+		border-radius: 20px;
+		transition: 0.3s transform;
+		img {
+			border-radius: 20px;
+			margin-top: -20px;
+			width: 200px;
+			height: 200px;
+			object-fit: cover;
+			transform: translate(-15px, -15px);
+		}
+		&_selected {
+			box-shadow: 0 5px 20px $main-color;
+			transform: translateY(-8px);
+		}
+		&:hover {
+			box-shadow: 0 5px 20px $main-color;
+			transform: translateY(-8px);
+		}
+	}
+	&__more {
+		position: relative;
+		margin-top: 10px;
+		width: 170px;
+		height: 25px;
+		color: rgb(255, 255, 255);
+		background-color: $main-color;
+		border-radius: 10px;
+		border: 1px solid rgb(255, 255, 255);
+		&:hover {
+			cursor: pointer;
+			background-color: $grey;
+		}
+	}
+	&__name {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		font-weight: bold;
+		font-size: 19px;
+		line-height: 20px;
+		text-transform: uppercase;
+		color: #fff;
+		align-items: center;
+	}
+	&__notfound {
+		text-align: center;
+		font-size: 32px;
+		line-height: 32px;
+		padding: 8px 16px;
+		color: #fff;
+		font-weight: 600;
+	}
+}
+
+.back{
+	margin-left: -930px;
+	padding: 4px;
+	padding-left: 40px;
+	background: url(../../images/arrow-left-white.png) no-repeat;
+	background-size: 30px;
+	font-size: 20px;
+	font-weight: 700;
+	color: #fff;
+	cursor: pointer;
+	&:hover {
+		padding-left: 50px;
+		color: rgb(8, 8, 8);
+	}
+}

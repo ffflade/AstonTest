@@ -16,16 +16,16 @@ const History = () => {
 	const [history, setHistory] = useState({});
 
 	useEffect(() => {
-		if (!!isLog === false) {
+		if (isLog === false) {
 			return navigate(-1)
 		}
 
 		const user = JSON.parse(localStorage.getItem(getUsername));
-
 		setHistory(user.history)
 	}, []);
 
 	let items = View(history);
+
 
 
 	return 	(
@@ -46,9 +46,8 @@ const View = (history) => {
 		return (
 			<Link to={`/search/${item}`}>
 				<li
-					key={i}
 					className="history__list__item"
-					
+					key={i.toString()}
 					>
 						{item}
 				</li>
