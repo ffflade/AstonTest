@@ -12,8 +12,7 @@ const userMiddleware = (store) => (next) => (action) => {
 	if (action.type === 'user/usersignIn') {
 
 		if (payloadUser) {
-			console.log('existing')
-			return null;
+			return next({type:'user/userExisting'});
 		} else {
 			localStorage.setItem(action.payload.username, JSON.stringify({
 				username: action.payload.username,
@@ -27,23 +26,22 @@ const userMiddleware = (store) => (next) => (action) => {
 
 		if (payloadUser) {
 			if (payloadUser.password === action.payload.password) {
-				return (next(action));
+				return next(action);
 			} else {
-				console.log('wrong pass');
-				return null;
+				return next({type: 'user/userWrongPassword'});
 			}
-		}
-		else {
-			console.log('not registered');
-			return null;
+		} else {
+			return next({type:'user/userNotRegistered'});
 		}
 	}
 
 	else if (action.type === 'user/addHistory') {
-		currentUser[`history`][action.payload] = true;
+		if (!isLogged === true) {
+			currentUser[`history`][action.payload] = true;
+		}
 	}
 
-	if (isLogged) {
+	if (!isLogged) {
 		localStorage.setItem(currentUser.username, JSON.stringify({
 			username: currentUser.username,
 			password: currentUser.password,

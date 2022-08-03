@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { userLogIn } from "../../features/user/userSlice";
+import { userLogIn, wrongPassword, errorUser } from "../../features/user/userSlice";
 
 import './login.scss'
 
@@ -12,13 +12,20 @@ const Login = () => {
 		username: '',
 		password: ''
 	});
+
+	const wrongPass = useSelector(wrongPassword);
+	const error = useSelector(errorUser);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
 	const onSubmitHandler = (e) => {
 		e.preventDefault();
 		dispatch(userLogIn(data));
-		navigate('/')
+		console.log(error, !!wrongPass)
+		if ((!!wrongPass && !error)) {
+			console.log(!error, !wrongPass)
+			navigate('/')
+		}
 	}
 
 	return (
@@ -53,6 +60,20 @@ const Login = () => {
 					/
 					<Link to="/" className="login__link_two">Home</Link>
 				</div>
+				{wrongPass ? 
+					<div className="error">
+						<h1 className="error__title">
+							Wrong Password!
+						</h1>
+					</div> : null
+				||
+				error ? 
+					<div className="error">
+						<h1 className="error__title">
+							Account not existing
+						</h1>
+					</div> : null
+				}
 			</div>
 		</>
 	)

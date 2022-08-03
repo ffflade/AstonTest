@@ -1,8 +1,9 @@
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import {useState, useEffect} from 'react';
 
 
 import useMarvelService from '../../services/useMarverService';
+import View from "./View";
 import './searchPage.scss'
 
 const SearchPage = () => {
@@ -17,14 +18,12 @@ const SearchPage = () => {
 
 	useEffect(() => {
 		getCharaactersStartWith(name)
-			.then(onCharListLoaded)
+			.then((newCharList) => {
+				setCharList(charList => [...charList, ...newCharList])
+			})
 		// eslint-disable-next-line
 	}, []);
 
-	const onCharListLoaded = (newCharList) => {
-		setCharList(charList => [...charList, ...newCharList]);
-	}
-	const items = View(charList);
 
 	return (
 			<div className="char__content">
@@ -32,7 +31,7 @@ const SearchPage = () => {
 				<div className="char__list"> 
 				{
 					charList.length > 0 ?
-					{...items} :
+					<View charList={charList}/> :
 					<h1 className="char__notfound">No matches found</h1>
 				}
 				</div>
@@ -40,45 +39,6 @@ const SearchPage = () => {
 	)
 }
 
-const View = (arr) => {
 
-	const items =  arr.map((item, i) => {
-		let imgStyle = {'objectFit' : 'cover'};
-		if (item.thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') {
-			imgStyle = {'objectFit' : 'unset'};
-		}
-
-		if (item.name.length > 15) {
-			let newName = item.name.split('(');
-			item.name = newName[0];
-		}
-
-		return (
-			<li 
-				className="char__item"
-				tabIndex={0}
-				//Я бы хотел поставить key={item.id} но у апи иногда совпадают ключи, поэтому отсавляю так
-				key={i}
-				>
-
-				<img src={item.thumbnail} alt={item.name} style={imgStyle}/>
-					<div className="char__name">{item.name}
-					<Link  to={`/character/${item.id}`}>
-					<button className="char__more">More</button>
-				</Link></div>
-				
-			</li>
-		)
-	});
-
-	return (
-		<>
-			<ul className="char__grid">
-				{items}
-			</ul>
-		</>
-
-	)
-}
 
 export default SearchPage;

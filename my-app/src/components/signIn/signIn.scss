@@ -79,3 +79,15 @@
 		}
 	}
 }
+
+.error {
+	display: block;
+	margin-top: 10px;
+	&__title {
+		text-align: center;
+		font-size: 32px;
+		line-height: 32px;
+		color: rgb(202, 44, 44);
+		font-weight: 600;
+	}
+}

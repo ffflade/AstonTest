@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { usersignIn } from "../../features/user/userSlice";
+import { usersignIn, isExisting } from "../../features/user/userSlice";
 
 import './signIn.scss';
 
@@ -15,11 +15,15 @@ const SignIn = () => {
 	
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+	const existing = useSelector(isExisting);
 
 	const onSubmitHandler = (e) => {
 		e.preventDefault();
 		dispatch(usersignIn(data))
-		navigate('/login')
+		
+		if (!isExisting) {
+			navigate('/login')
+		}
 	}
 
 	return (
@@ -52,6 +56,13 @@ const SignIn = () => {
 					/
 					<Link to="/" className="signIn__link_two">Home</Link>
 				</div>
+				{existing ? 
+					<div className="error">
+						<h1 className="error__title">
+							This account is existing
+						</h1>
+					</div> : null
+				}
 			</div>
 		</>
 	)
