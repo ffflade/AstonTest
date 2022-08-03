@@ -18,7 +18,7 @@ const Favourites = () => {
 	const [charList, setCharList] = useState([]);
 
 	useEffect(() => {
-		if (!!isLog === false) {
+		if (isLog === false) {
 			return navigate(-1)
 		}
 	}, []);
