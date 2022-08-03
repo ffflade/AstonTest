@@ -4,8 +4,9 @@ import Header from "./components/header/Header";
 import Home from "./components/home/Home";
 import SingleCharPage from './singleCharPage/SingleCharPage';
 import Login from './components/login/Login';
-import SignUp from './components/signUp/SignUp';
+import SignIn from './components/signIn/SignIn';
 import SearchPage from './components/searchPage/SearchPage';
+import History from './components/history/History';
 
 function App() {
 	return (
@@ -22,8 +23,8 @@ function App() {
 						element={<Login />} />
 
 					<Route 
-						path="/signup" 
-						element={<SignUp />} />
+						path="/signIn" 
+						element={<SignIn />} />
 
 					<Route 
 						path='/character/:itemId'
@@ -32,6 +33,10 @@ function App() {
 					<Route 
 						path='/search/:name'
 						element={<SearchPage/>}/>
+
+					<Route 
+						path='/history'
+						element={<History/>}/>
 				</Routes>
 			</div>
 		</Router>

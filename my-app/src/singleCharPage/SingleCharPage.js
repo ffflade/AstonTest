@@ -29,7 +29,7 @@ const SingleCharPage = (props) => {
 		})
 	}
 
-	const content = !(!char) ? <View char={char}/> : null;
+	const content = !!char ? <View char={char}/> : null;
 
 	return (
 		<div className="char__info">
@@ -91,7 +91,11 @@ const View = ({char}) => {
 }
 
 SingleCharPage.propTypes = {
-	itemId: PropTypes.string
+	itemId: PropTypes.string,
+}
+
+View.propTypes = {
+	char: PropTypes.object
 }
 
 export default SingleCharPage;

@@ -1,0 +1,36 @@
+.history {
+	margin: 0 auto;
+	margin-top: 25px;
+	width: 500px;
+	padding: 25px;
+	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+	&__list {
+		font-weight: bold;
+		font-size: 20px;
+		line-height: 30px;
+		margin-left: 10px;
+		&__item {
+			background-color: rgb(243, 242, 242);
+			width: 400px;
+			padding: 0px 10px;
+			line-height: 25px;
+			box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+			margin-top: 10px;
+			&:hover {
+				color: rgb(231, 231, 231);
+				background-color: rgb(46, 45, 45);
+			}
+		}
+	}
+}
+
+.back{
+	display: inline-block;
+	color: black;
+	margin-left: 0px;
+	background: url(../../images/arrow-left.png) no-repeat;
+	background-size: 30px;
+	font-size: 20px;
+	font-weight: 700;
+	cursor: pointer;
+}

@@ -2,39 +2,37 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { userLogIn, wrongPassword, errorUser } from "../../features/user/userSlice";
+import { usersignIn, isExisting } from "../../features/user/userSlice";
 
-import './login.scss'
+import './signIn.scss';
 
-const Login = () => {
+const SignIn = () => {
 
 	const [data, setData] = useState({
 		username: '',
 		password: ''
 	});
-
-	const wrongPass = useSelector(wrongPassword);
-	const error = useSelector(errorUser);
+	
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+	const existing = useSelector(isExisting);
 
 	const onSubmitHandler = (e) => {
 		e.preventDefault();
-		dispatch(userLogIn(data));
-		console.log(error, !!wrongPass)
-		if ((!!wrongPass && !error)) {
-			console.log(!error, !wrongPass)
-			navigate('/')
+		dispatch(usersignIn(data))
+		
+		if (!isExisting) {
+			navigate('/login')
 		}
 	}
 
 	return (
 		<>
-			<div className="login">
+			<div className="signIn">
 				<form  
-					className="login__form"
+					className="signIn__form"
 					onSubmit={onSubmitHandler}>
-					<label htmlFor="name">Enter your username:</label>
+					<label htmlFor="name">Enter your name:</label>
 					<input 
 						required
 						type="text"
@@ -50,27 +48,18 @@ const Login = () => {
 						placeholder="your password example"
 						value={data.password}
 						onChange={(e) => setData({ ...data, password: e.target.value })}/>
-					<button type="submit" className="login__button">Login</button>
+					<button type="submit" className="signIn__button">Create Account</button>
 				</form>
-
 				<p>or</p>
-
-				<div className="login__alternative">
-					<Link to="/signIn" className="login__link_one">Sign Up</Link>
+				<div className="signIn__alternative">
+					<Link to="/login" className="signIn__link_one">Login</Link>
 					/
-					<Link to="/" className="login__link_two">Home</Link>
+					<Link to="/" className="signIn__link_two">Home</Link>
 				</div>
-				{wrongPass ? 
+				{existing ? 
 					<div className="error">
 						<h1 className="error__title">
-							Wrong Password!
-						</h1>
-					</div> : null
-				||
-				error ? 
-					<div className="error">
-						<h1 className="error__title">
-							Account not existing
+							This account is existing
 						</h1>
 					</div> : null
 				}
@@ -79,4 +68,4 @@ const Login = () => {
 	)
 }
 
-export default Login;
+export default SignIn;
