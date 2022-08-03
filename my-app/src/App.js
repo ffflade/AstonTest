@@ -7,6 +7,7 @@ import Login from './components/login/Login';
 import SignIn from './components/signIn/SignIn';
 import SearchPage from './components/searchPage/SearchPage';
 import History from './components/history/History';
+import Favourites from './components/favourites/Favourites';
 
 function App() {
 	return (
@@ -37,6 +38,10 @@ function App() {
 					<Route 
 						path='/history'
 						element={<History/>}/>
+
+					<Route 
+						path='/favourites'
+						element={<Favourites/>}/>
 				</Routes>
 			</div>
 		</Router>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { usersignIn, isExisting } from "../../features/user/userSlice";
@@ -13,17 +13,12 @@ const SignIn = () => {
 		password: ''
 	});
 	
-	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const existing = useSelector(isExisting);
 
 	const onSubmitHandler = (e) => {
 		e.preventDefault();
 		dispatch(usersignIn(data))
-		
-		if (!isExisting) {
-			navigate('/login')
-		}
 	}
 
 	return (

@@ -72,4 +72,26 @@
 		text-align: center;
 	}
 
+	&__favourite {
+		margin-left: 815px;
+		font-size: 16px;
+		line-height: 24px;
+		width: 130px;
+		min-height: 44px;
+		border: unset;
+		border-radius: 4px;
+		background-color: rgb(206, 54, 49);
+		color: #fff;
+		font-weight: 600;
+		cursor: pointer;
+		&:focus,  &:hover {
+			background-color:  rgb(165, 146, 146);
+			color:rgb(206, 54, 49);
+		}
+		&_remove {
+			background-color: rgb(105, 103, 103);
+			margin-left: 898px;
+			margin-top: 5px;
+		}
+	}
 }

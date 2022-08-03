@@ -21,11 +21,11 @@ const Login = () => {
 	const onSubmitHandler = (e) => {
 		e.preventDefault();
 		dispatch(userLogIn(data));
-		console.log(error, !!wrongPass)
-		if ((!!wrongPass && !error)) {
-			console.log(!error, !wrongPass)
+		console.log(wrongPass, error, !userLogIn)
+		if ((!wrongPass && !error && !userLogIn)) {
 			navigate('/')
 		}
+		
 	}
 
 	return (
@@ -60,19 +60,21 @@ const Login = () => {
 					/
 					<Link to="/" className="login__link_two">Home</Link>
 				</div>
-				{wrongPass ? 
-					<div className="error">
-						<h1 className="error__title">
-							Wrong Password!
-						</h1>
-					</div> : null
-				||
-				error ? 
-					<div className="error">
-						<h1 className="error__title">
-							Account not existing
-						</h1>
-					</div> : null
+				{
+					error ? 
+						<div className="error">
+							<h1 className="error__title">
+								Account not existing
+							</h1>
+						</div> : null
+
+					||
+					wrongPass ? 
+						<div className="error">
+							<h1 className="error__title">
+								Wrong Password!
+							</h1>
+						</div> : null
 				}
 			</div>
 		</>
