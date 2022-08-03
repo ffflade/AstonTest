@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-
 import { getUser, isLogged } from '../../features/user/userSlice';
 
 import useMarvelService from '../../services/useMarverService';
